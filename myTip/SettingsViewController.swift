@@ -12,25 +12,26 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
     
+    let tipPercentages = [0.15, 0.18, 0.20]
+    let defaults = UserDefaults.standard
+    
+    struct Keys {
+        static let selectedTip = "selectedTip"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        retriveStoredTip()
     }
     
     @IBAction func storeTip(_ sender: Any) {
-        
-        let tipPercentages = [0.15, 0.18, 0.20]
         let tipPercent = tipPercentages[tipControl.selectedSegmentIndex]
-        //Access UserDefaults
-        let defaults = UserDefaults.standard
-        
-        // Set the value
-        defaults.set(tipPercent, forKey: "selectedTip")
-        
-        // Force UserDefaults to save.
-        // defaults.synchronize()
+        defaults.set(tipPercent, forKey: Keys.selectedTip)
     }
     
-
+    func retriveStoredTip() {
+        let selectedTip = defaults.double(forKey: Keys.selectedTip)
+        tipControl.selectedSegmentIndex = tipPercentages.firstIndex(of: selectedTip) ?? 0
+    }
+    
 }
