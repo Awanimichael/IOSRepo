@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animate(withDuration: 0.4, delay: 0.2, options: [],
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [],
             animations: {
                 self.changeView.center.x += self.view.bounds.width
                 self.changeView.backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
